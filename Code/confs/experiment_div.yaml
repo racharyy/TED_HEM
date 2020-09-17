@@ -1,0 +1,69 @@
+{
+  "seed": 123,
+  "input_path": "../Data",
+  "output_path": "./Output/",
+
+  "text_input_filename": 'normalized_input.pkl',#"all_data_dic_200.pkl",
+  "vid_input_filename": "tid_vs_segments_eigen_values.pkl",
+  "joint_filename": 'joint_data_dic.pkl',
+  "input_type": "transcript_plus_video",###--options are "transcript_and_sensitive", "all", "transcript_only", "transcript_plus_video", "video_only"
+
+  "need_split": False,
+  "split_filename": "split_index.pkl",
+  "create_jointdata": False,
+
+  "train_neural_network": True,
+  "load_nn_from_file": False,
+  "neural_network_model_filename": "div_trained_nn.model",
+  "gpu_num": -1,
+  "model_type": "SimpleMLP",
+  "model_params": {
+    "in_size": 407,
+    "hidden_size": 400,
+    "out_size": 6,
+    "dropout": 0.1
+  },
+  "loss_function_name": "BCEWithLogitsLoss",
+  "optimizer": "Adam",
+  "optimizer_params": {
+    "weight_decay": 0.001
+  },
+  "scheduler": "ReduceLROnPlateau",
+  "scheduler_params": {
+    "mode": 'min', 
+    "factor": 0.1,
+     "patience": 10,
+      "verbose": False,
+      "threshold": 0.0001,
+      "threshold_mode": 'rel',
+      "cooldown": 0,
+      "min_lr": 0,
+      "eps": 1e-08
+  },
+  #"optimizer": "SGD",
+  #"optimizer_params": {
+  #  "lr": 0.01,
+  #  "momentum": 0.9
+  #},
+  "trainer_params":{
+    "max_epochs": 30,
+    "max_iter": 15,
+    "use_textdiv": False,
+    "use_viddiv": False,
+    "minibatch_size": 30
+  },
+
+
+  "test_neural_network": True,
+  "load_nn_filename": "div_trained_nn.model",
+
+
+  #Hyperparameters to tune
+  'use_binned_text_diversity': False,
+  'num_bin': 7,
+  'epsilon': 0.3,
+  'lambda': 0.3,
+  'num_eigen_tokeep': 2,
+  'max_vid_len': 100
+
+}
