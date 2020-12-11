@@ -1,5 +1,9 @@
-# Fairness in Rating Prediction by Awareness of  Verbal and Gesture Quality of Public Speeches
-Code for the paper *Fairness in Rating Prediction by Awareness of  Verbal and Gesture Quality of Public Speeches*
+# VaryFairyTED : A Fair in Rating Predictor for Public Speeches by Awareness of  Verbal and Gesture Quality
+Codes and appendix for the paper *VaryFairyTED : A Fair in Rating Predictor for Public Speeches by Awareness of  Verbal and Gesture Quality*
+
+## Appendix
+
+Additional figures and tables are added in the appendix.pdf file 
 
 ## Create Environment
 
