@@ -107,6 +107,34 @@ def generate_errorbardata(group1_df, group2_df,rat,div_type):
     return mean_rate_g1, std_rate_g1, mean_rate_g2, std_rate_g2
 
 
+def generate_errorbar_all(group1_df, group2_df,rating_names):
+
+    num_rep = 100
+    num_cat_div = 5
+    
+    mean_rate_g1, std_rate_g1, mean_rate_g2, std_rate_g2 = [], [], [], []
+    
+    # cur_group1_df, cur_group2_df = group1_df[group1_df[div_type]==cat], group2_df[group2_df[div_type]==cat]
+    for rat in rating_names:
+        bin_rate = "bin_"+rat
+        group1_sample, group2_sample = [], []
+        for rep in range(num_rep):
+            
+            group1_samp = group1_df.sample(group1_df.shape[0],replace=True)
+            group1_sample.append(group1_samp[group1_samp[bin_rate]==1].shape[0]/float(group1_df.shape[0]))
+
+            group2_samp = group2_df.sample(group2_df.shape[0],replace=True)
+            group2_sample.append(group2_samp[group2_samp[bin_rate]==1].shape[0]/float(group2_df.shape[0]))
+
+        mean_rate_g1.append(np.mean(group1_sample))
+        mean_rate_g2.append(np.mean(group2_sample))
+
+        std_rate_g1.append(sem(group1_sample))
+        std_rate_g2.append(sem(group2_sample))
+            
+    return mean_rate_g1, std_rate_g1, mean_rate_g2, std_rate_g2
+
+
 def convert_dict_to_categorical_sub(df):
 
     # convert dataframe from one hot encoded dict to categorical for gender rance
